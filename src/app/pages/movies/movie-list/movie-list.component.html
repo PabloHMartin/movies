@@ -1,3 +1,4 @@
+<app-loading-spinner *ngIf="!movies.length" ></app-loading-spinner>
 <div class="card-wrapper">
   <a *ngFor="let movie of movies" [routerLink]="movie.id.toString()">
   <mat-card>
