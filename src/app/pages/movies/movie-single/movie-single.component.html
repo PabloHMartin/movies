@@ -1,15 +1,13 @@
 <div class="card-wrapper">
-  <a *ngFor="let movie of movies" [routerLink]="movie.id.toString()">
   <mat-card>
     <mat-card-header>
       <mat-card-title>{{ movie.title }}</mat-card-title>
     </mat-card-header>
     <img mat-card-image [src]="movie.poster" />
     <mat-card-content>
-        <mat-chip-list aria-label="Fish selection">
-          <mat-chip *ngFor="let genre of movie.genre">{{genre}}</mat-chip>
+      <mat-chip-list aria-label="Fish selection">
+        <mat-chip *ngFor="let genre of movie.genre">{{genre}}</mat-chip>
       </mat-chip-list>
     </mat-card-content>
   </mat-card>
-  </a>
 </div>
