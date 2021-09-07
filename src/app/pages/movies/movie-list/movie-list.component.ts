@@ -1,5 +1,5 @@
+import { MoviesService } from '../services/movies.service';
 import { Router } from '@angular/router';
-import { DbService } from './../../../shared/services/db.service';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie.model';
 
@@ -13,14 +13,12 @@ export class MovieListComponent implements OnInit {
   NEW_MOVIE = 'movie-manager';
 
   movies: Movie[] = [];
-  loading: boolean = false;
 
-  constructor(private db: DbService, private router: Router) { }
+  constructor(public moviesService: MoviesService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.db.getMovies().subscribe(
-      movies => this.movies = movies
-    )
+    this.moviesService.getMovies();
   }
 
   addNew(): void{

@@ -1,3 +1,5 @@
+import { Actor } from "./actor.model";
+
 export interface Movie {
   id: number;
   title: string;
@@ -6,5 +8,5 @@ export interface Movie {
   year: number;
   duration: number;
   imdbRating: number;
-  actors: number[];
+  actors: number[] | Actor[];
 }

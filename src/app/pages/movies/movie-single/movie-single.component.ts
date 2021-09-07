@@ -1,4 +1,4 @@
-import { DbService } from './../../../shared/services/db.service';
+import { MoviesService } from '../services/movies.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/shared/models/movie.model';
@@ -15,28 +15,35 @@ export class MovieSingleComponent implements OnInit {
   EDIT_URL = 'movie-manager';
   MOVIELIST_URL = 'movies';
 
-  movie: Movie;
+  movieId: string = '';
 
   constructor(private route: ActivatedRoute,
-              private db: DbService,
+              public moviesService: MoviesService,
               private router: Router) { }
 
   ngOnInit(): void {
 
-    this.route.params.pipe(
-      switchMap(({id}) => this.db.getMovie(id))
-    ).subscribe( movie => {
-      this.movie = movie
-    })
+    this.route.params.subscribe(
+      ({id}) => {
+        this.movieId = id;
+        this.moviesService.getMovie(id)
+      }
+    )
   }
 
   editMovie(movie: Movie): void {
+    this.saveToLocalStorage(movie);
     this.router.navigateByUrl(`${this.EDIT_URL}/${movie.id}`);
   }
 
   deleteMovie(movie: Movie): void{
-    this.db.deleteMovie(movie.id.toString());
+    this.moviesService.deleteMovie(movie.id.toString());
     this.router.navigateByUrl(this.MOVIELIST_URL);
+  }
+
+  private saveToLocalStorage(movie: Movie): void {
+    localStorage.clear();
+    localStorage.setItem(`${movie.id}`, JSON.stringify(movie))
   }
 
 }

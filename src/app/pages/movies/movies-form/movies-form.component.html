@@ -30,6 +30,7 @@
 
     <app-genres-input
     [validator]="genre"
+    [defaultGenres]="defaultGenres"
     formControlName="genre">
     </app-genres-input>
     <mat-error *ngIf="genre.invalid && genre.dirty && genre.touched">
