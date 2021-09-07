@@ -8,5 +8,6 @@ export interface Movie {
   year: number;
   duration: number;
   imdbRating: number;
-  actors: number[] | Actor[];
+  actors: number[];
+  actorsInfo: Actor[];
 }

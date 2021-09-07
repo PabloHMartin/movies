@@ -23,8 +23,7 @@ export class MovieSingleComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               public moviesService: MoviesService,
               private router: Router,
-              public dialog: MatDialog,
-              private toolbar: ToolbarService) { }
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
 

@@ -23,6 +23,7 @@ export class MoviesFormComponent implements OnInit {
   loading = false;
   availableActors: Actor[] = [];
   defaultGenres: string[] = [];
+  defaultActors: number[] = [];
   isEdit: boolean = false;
   idToEdit: string = '';
 
@@ -31,7 +32,7 @@ export class MoviesFormComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               public dialog: MatDialog,
-              private toolbar: ToolbarService) { }
+              public toolbar: ToolbarService) { }
 
   ngOnInit(): void {
 
@@ -56,6 +57,7 @@ export class MoviesFormComponent implements OnInit {
   createFormFromMovie(movie: Movie) {
     const { title, poster, genre, year, duration,imdbRating, actors} = movie;
     this.defaultGenres = genre;
+    this.defaultActors = actors;
     this.form = this.fb.group({
       title: [title, [Validators.required]],
       poster: [poster, [Validators.required]],

@@ -31,10 +31,9 @@ export class DbService {
       .pipe(
         map(([movie, actors]) => {
 
-          movie.actors.map(
-            actorid => actorid = actors.filter( item => item.id == actorid)
-          )
-            console.log(movie);
+          const intersection = actors.filter(element => movie.actors.includes(element.id));
+          movie.actorsInfo = intersection;
+
          return movie;
         })
       );
