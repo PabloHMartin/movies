@@ -14,9 +14,11 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
-import { ShellComponent } from './shell/shell.component'
+import { ShellComponent } from './shell/shell.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component'
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
-const components = [ ShellComponent ];
+const components = [ ShellComponent, LoadingSpinnerComponent];
 
 
 const modules = [
@@ -34,12 +36,14 @@ const modules = [
     MatChipsModule,
     MatSelectModule,
     MatDialogModule,
-    MatListModule
+    MatListModule,
+    MatAutocompleteModule
 ];
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
+
   ],
   imports: [
     ...modules

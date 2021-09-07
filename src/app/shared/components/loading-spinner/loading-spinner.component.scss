@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  height: 120vh;
+  width: 100vw;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  margin-top: -3em;
+}
+
+.spinner {
+  align-self: center;
+  padding-bottom: 10em;
+}

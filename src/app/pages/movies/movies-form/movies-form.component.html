@@ -1,0 +1,103 @@
+<div class="form-wrapper">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field [color]="title.valid && 'accent'">
+      <input
+      matInput
+      formControlName="title"
+      type="text"
+      placeholder="title"
+      autocomplete="off"
+      />
+
+      <mat-error *ngIf="title.invalid && title.dirty">
+        You must enter a valid title
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field [color]="poster.valid && 'accent'">
+      <input
+      matInput
+      formControlName="poster"
+      type="text"
+      placeholder="poster"
+      autocomplete="off"
+      />
+
+      <mat-error *ngIf="poster.invalid && poster.dirty">
+        You must enter a valid url
+      </mat-error>
+    </mat-form-field>
+
+    <app-genres-input
+    [validator]="genre"
+    formControlName="genre">
+    </app-genres-input>
+    <mat-error *ngIf="genre.invalid && genre.dirty && genre.touched">
+      You must enter a valid url
+    </mat-error>
+
+    <app-actors-input
+    [validator]="genre"
+    [availableActors]="availableActors"
+    formControlName="actors">
+    </app-actors-input>
+    <mat-error *ngIf="actors.invalid && actors.dirty && actors.touched">
+      You must enter a valid url
+    </mat-error>
+
+
+
+
+    <mat-form-field [color]="year.valid && 'accent'">
+      <input
+      matInput
+      formControlName="year"
+      type="number"
+      placeholder="year"
+      autocomplete="off"
+      />
+
+      <mat-error *ngIf="year.invalid && year.dirty">
+        You must enter a valid url
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field [color]="duration.valid && 'accent'">
+      <input
+      matInput
+      formControlName="duration"
+      type="number"
+      placeholder="duration"
+      autocomplete="off"
+      />
+
+      <mat-error *ngIf="duration.invalid && duration.dirty">
+        You must enter a valid url
+      </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field [color]="imdbRating.valid && 'accent'">
+      <input
+      matInput
+      formControlName="imdbRating"
+      type="number"
+      placeholder="imdbRating"
+      autocomplete="off"
+      />
+
+      <mat-error *ngIf="imdbRating.invalid && imdbRating.dirty">
+        You must enter a valid url
+      </mat-error>
+    </mat-form-field>
+
+      <button
+      mat-raised-button
+      color="accent"
+      type="submit"
+      [disabled]="form.invalid || loading"
+      >
+      Enviar
+    </button>
+  </form>
+</div>

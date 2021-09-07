@@ -1,4 +1,5 @@
-<div class="card-wrapper">
+<app-loading-spinner *ngIf="!movie" ></app-loading-spinner>
+<div class="card-wrapper" *ngIf="movie">
   <mat-card>
     <mat-card-header>
       <mat-card-title>{{ movie.title }}</mat-card-title>
@@ -10,4 +11,12 @@
       </mat-chip-list>
     </mat-card-content>
   </mat-card>
+</div>
+<div class="fab-buttons" *ngIf="movie" >
+  <button (click)="editMovie(movie)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button (click)="deleteMovie(movie)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <mat-icon>delete</mat-icon>
+  </button>
 </div>
