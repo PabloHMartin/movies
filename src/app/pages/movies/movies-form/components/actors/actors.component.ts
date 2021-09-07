@@ -20,6 +20,7 @@ export class ActorsComponent implements OnInit, ControlValueAccessor {
 
   @Input() validator: AbstractControl;
   @Input() availableActors: Actor[] = [];
+  @Input() defaultActors: number[] = [];
   @ViewChild(MatSelect) matSelect: MatSelect;
   @Output() selectionChange: EventEmitter<MatSelectChange> = new EventEmitter<MatSelectChange>();
   @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();

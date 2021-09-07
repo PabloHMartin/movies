@@ -16,6 +16,7 @@ import { AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angul
 export class GenresInputComponent implements OnInit, ControlValueAccessor {
 
   @Input() validator: AbstractControl;
+  @Input() defaultGenres?: string[];
 
   value: string;
   genresSelected: string[] = [];
@@ -69,6 +70,9 @@ export class GenresInputComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit(): void {
+    if(this.defaultGenres && this.defaultGenres.length > 0) {
+      this.genresSelected = [...this.genresSelected, ...this.defaultGenres];
+    }
   }
 
 }

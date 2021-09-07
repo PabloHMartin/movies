@@ -1,3 +1,5 @@
+import { Actor } from "./actor.model";
+
 export interface Movie {
   id: number;
   title: string;
@@ -7,4 +9,5 @@ export interface Movie {
   duration: number;
   imdbRating: number;
   actors: number[];
+  actorsInfo: Actor[];
 }

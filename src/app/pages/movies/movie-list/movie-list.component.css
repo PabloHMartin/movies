@@ -1,0 +1,23 @@
+:host {
+  padding: 24px;
+}
+
+.card-wrapper {
+  padding: 1rem;
+}
+
+.card-wrapper__link {
+  text-decoration: none;
+}
+
+mat-card {
+  max-width: 450px;
+  margin: 0 auto 10px;
+}
+
+.fab-buttons {
+  position: fixed !important;
+  bottom: 10px;
+  right: 10px;
+}
+/*# sourceMappingURL=movie-list.component.css.map */

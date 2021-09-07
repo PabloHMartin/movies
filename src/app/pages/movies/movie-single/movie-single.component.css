@@ -1,0 +1,19 @@
+:host {
+  padding: 24px;
+}
+
+.card-wrapper {
+  padding: 1rem;
+}
+
+mat-card {
+  max-width: 450px;
+  margin: 0 auto 10px;
+}
+
+.fab-buttons {
+  position: fixed !important;
+  bottom: 10px;
+  right: 10px;
+}
+/*# sourceMappingURL=movie-single.component.css.map */

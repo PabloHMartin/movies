@@ -1,22 +1,30 @@
-<app-loading-spinner *ngIf="!movie" ></app-loading-spinner>
-<div class="card-wrapper" *ngIf="movie">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>{{ movie.title }}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image [src]="movie.poster" />
-    <mat-card-content>
-      <mat-chip-list aria-label="Fish selection">
-        <mat-chip *ngFor="let genre of movie.genre">{{genre}}</mat-chip>
-      </mat-chip-list>
-    </mat-card-content>
-  </mat-card>
+<app-loading-spinner *ngIf="!(moviesService.movie$ | async) || (moviesService.movie$ | async).id?.toString() !== movieId " ></app-loading-spinner>
+<div *ngIf="(moviesService.movie$ | async) as movie" >
+  <div class="card-wrapper" *ngIf="movie.id && (movieId === movie.id.toString())" >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ movie.title }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="movie.poster" />
+      <mat-card-content>
+        <mat-chip-list aria-label="genre">
+          <mat-chip *ngFor="let genre of movie.genre">{{genre}}</mat-chip>
+        </mat-chip-list>
+        <mat-chip-list aria-label="actor">
+          <mat-chip *ngFor="let actor of movie.actorsInfo">{{actor.first_name}} {{actor.last_name}}</mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="fab-buttons" *ngIf="movie" >
+    <button (click)="editMovie(movie)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button (click)="deleteMovie(movie)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
 </div>
-<div class="fab-buttons" *ngIf="movie" >
-  <button (click)="editMovie(movie)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
-    <mat-icon>edit</mat-icon>
-  </button>
-  <button (click)="deleteMovie(movie)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
-    <mat-icon>delete</mat-icon>
-  </button>
-</div>
+
+
+

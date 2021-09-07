@@ -1,9 +1,13 @@
-import { Router } from '@angular/router';
+import { ToolbarService } from './../../../shared/services/toolbar.service';
+import { DialogComponent } from './../components/dialog/dialog.component';
+import { MoviesService } from './../services/movies.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DbService } from './../../../shared/services/db.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Actor } from 'src/app/shared/models/actor.model';
 import { Movie } from 'src/app/shared/models/movie.model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-movies-form',
@@ -13,21 +17,59 @@ import { Movie } from 'src/app/shared/models/movie.model';
 export class MoviesFormComponent implements OnInit {
 
   MOVIELIST_URL = 'movies';
+  TITLE = 'newMovie';
 
   form: FormGroup;
   loading = false;
   availableActors: Actor[] = [];
+  defaultGenres: string[] = [];
+  defaultActors: number[] = [];
+  isEdit: boolean = false;
+  idToEdit: string = '';
 
   constructor(private fb: FormBuilder,
-              private db: DbService,
-              private router: Router) { }
+              private moviesService: MoviesService,
+              private router: Router,
+              private route: ActivatedRoute,
+              public dialog: MatDialog,
+              public toolbar: ToolbarService) { }
 
   ngOnInit(): void {
 
-    this.db.getActors().subscribe(
-      actors => this.availableActors = actors
-    );
+    this.getActorsFromApi();
 
+    this.route.params.subscribe(
+      ({id}) => {
+        if(localStorage.getItem(id)){
+          this.isEdit = true;
+          this.idToEdit = id;
+          let movieToUpdate: Movie = JSON.parse(localStorage.getItem(id)) as Movie;
+          this.toolbar.setToolbarTitle(movieToUpdate.title);
+          this.createFormFromMovie(movieToUpdate);
+        }else{
+          this.toolbar.setToolbarTitle(this.TITLE);
+          this.createNewForm();
+        }
+      }
+    )
+  }
+
+  createFormFromMovie(movie: Movie) {
+    const { title, poster, genre, year, duration,imdbRating, actors} = movie;
+    this.defaultGenres = genre;
+    this.defaultActors = actors;
+    this.form = this.fb.group({
+      title: [title, [Validators.required]],
+      poster: [poster, [Validators.required]],
+      genre: [genre, [Validators.required, Validators.minLength(1)]],
+      year: [year, [Validators.required]],
+      duration: [duration, [Validators.required]],
+      imdbRating: [imdbRating, [Validators.required]],
+      actors: [actors, [Validators.required]],
+    });
+  }
+
+  createNewForm() {
     this.form = this.fb.group({
       title: ['', [Validators.required]],
       poster: ['', [Validators.required]],
@@ -37,9 +79,13 @@ export class MoviesFormComponent implements OnInit {
       imdbRating: ['', [Validators.required]],
       actors: ['', [Validators.required]],
     });
-
   }
 
+  private getActorsFromApi(){
+    this.moviesService.getActors().subscribe(
+      actors => this.availableActors = actors
+    );
+  }
 
   get title() {
     return this.form.get('title');
@@ -66,15 +112,51 @@ export class MoviesFormComponent implements OnInit {
 
     async onSubmit() {
 
-    this.loading = true;
-
     const movie: Movie = this.form.value;
 
-    this.db.addMovie(movie);
+    if(this.isEdit){
+      this.moviesService.editMovie(movie, this.idToEdit).subscribe(
+        movie => {
+          if(movie){
+            console.log(movie);
+             this.openDialog();
+             this.router.navigateByUrl(this.MOVIELIST_URL);
+          }else{
+            console.log('error');
+             this.openDialog();
+             this.router.navigateByUrl(this.MOVIELIST_URL);
+          }
+        }
+      );
 
-    this.router.navigateByUrl(this.MOVIELIST_URL);
-    this.loading = false;
+    }else{
+      this.moviesService.addMovie(movie).subscribe(
+        movie => {
+          if(movie){
+            console.log(movie);
+            this.loading = false;
+            this.openDialog();
+            this.router.navigateByUrl(this.MOVIELIST_URL);
+          }else{
+            console.log('error');
+            this.loading = false;
+            this.openDialog();
+            this.router.navigateByUrl(this.MOVIELIST_URL);
+          }
+        }
+      );
+    }
+
+
+
   }
 
+  openDialog() {
+    this.dialog.open(DialogComponent, {
+      data: {
+        isEdit: this.isEdit
+      }
+    });
+  }
 
 }
