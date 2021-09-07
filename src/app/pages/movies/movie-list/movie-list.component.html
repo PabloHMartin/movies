@@ -14,3 +14,8 @@
   </mat-card>
   </a>
 </div>
+<div class="fab-buttons" *ngIf="movies.length" >
+  <button (click)="addNew()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

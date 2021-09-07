@@ -1,5 +1,9 @@
+import { Router } from '@angular/router';
+import { DbService } from './../../../shared/services/db.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Actor } from 'src/app/shared/models/actor.model';
+import { Movie } from 'src/app/shared/models/movie.model';
 
 @Component({
   selector: 'app-movies-form',
@@ -8,17 +12,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class MoviesFormComponent implements OnInit {
 
+  MOVIELIST_URL = 'movies';
+
   form: FormGroup;
   loading = false;
+  availableActors: Actor[] = [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private db: DbService,
+              private router: Router) { }
 
   ngOnInit(): void {
+
+    this.db.getActors().subscribe(
+      actors => this.availableActors = actors
+    );
 
     this.form = this.fb.group({
       title: ['', [Validators.required]],
       poster: ['', [Validators.required]],
-      genre: ['', [Validators.required]],
+      genre: ['', [Validators.required, Validators.minLength(1)]],
       year: ['', [Validators.required]],
       duration: ['', [Validators.required]],
       imdbRating: ['', [Validators.required]],
@@ -55,6 +68,11 @@ export class MoviesFormComponent implements OnInit {
 
     this.loading = true;
 
+    const movie: Movie = this.form.value;
+
+    this.db.addMovie(movie);
+
+    this.router.navigateByUrl(this.MOVIELIST_URL);
     this.loading = false;
   }
 

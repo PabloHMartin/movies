@@ -12,3 +12,11 @@
     </mat-card-content>
   </mat-card>
 </div>
+<div class="fab-buttons" *ngIf="movie" >
+  <button (click)="editMovie(movie)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button (click)="deleteMovie(movie)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

@@ -28,19 +28,25 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field [color]="genre.valid && 'accent'">
-      <input
-      matInput
-      formControlName="genre"
-      type="text"
-      placeholder="genre"
-      autocomplete="off"
-      />
+    <app-genres-input
+    [validator]="genre"
+    formControlName="genre">
+    </app-genres-input>
+    <mat-error *ngIf="genre.invalid && genre.dirty && genre.touched">
+      You must enter a valid url
+    </mat-error>
 
-      <mat-error *ngIf="genre.invalid && genre.dirty">
-        You must enter a valid url
-      </mat-error>
-    </mat-form-field>
+    <app-actors-input
+    [validator]="genre"
+    [availableActors]="availableActors"
+    formControlName="actors">
+    </app-actors-input>
+    <mat-error *ngIf="actors.invalid && actors.dirty && actors.touched">
+      You must enter a valid url
+    </mat-error>
+
+
+
 
     <mat-form-field [color]="year.valid && 'accent'">
       <input
@@ -81,20 +87,6 @@
       />
 
       <mat-error *ngIf="imdbRating.invalid && imdbRating.dirty">
-        You must enter a valid url
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field [color]="actors.valid && 'accent'">
-      <input
-      matInput
-      formControlName="actors"
-      type="text"
-      placeholder="actors"
-      autocomplete="off"
-      />
-
-      <mat-error *ngIf="actors.invalid && actors.dirty">
         You must enter a valid url
       </mat-error>
     </mat-form-field>

@@ -6,11 +6,13 @@ import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieSingleComponent } from './movie-single/movie-single.component';
 import { MoviesFormComponent } from './movies-form/movies-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GenresInputComponent } from './movies-form/components/genres-input/genres-input.component';
+import { ActorsComponent } from './movies-form/components/actors/actors.component';
 
 
 
 @NgModule({
-  declarations: [MovieListComponent, MovieSingleComponent, MoviesFormComponent],
+  declarations: [MovieListComponent, MovieSingleComponent, MoviesFormComponent, GenresInputComponent, ActorsComponent],
   imports: [
     CommonModule,
     SharedModule,
