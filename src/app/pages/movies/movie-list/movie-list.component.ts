@@ -1,3 +1,4 @@
+import { ToolbarService } from './../../../shared/services/toolbar.service';
 import { MoviesService } from '../services/movies.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -11,14 +12,18 @@ import { Movie } from 'src/app/shared/models/movie.model';
 export class MovieListComponent implements OnInit {
 
   NEW_MOVIE = 'movie-manager';
+  TITLE = 'movies';
+  defaultImgUrl = '../../../../assets/img/default-image.png';
 
   movies: Movie[] = [];
 
   constructor(public moviesService: MoviesService,
-              private router: Router) { }
+              private router: Router,
+              private toolbar: ToolbarService) { }
 
   ngOnInit(): void {
     this.moviesService.getMovies();
+    this.toolbar.setToolbarTitle(this.TITLE);
   }
 
   addNew(): void{

@@ -152,7 +152,7 @@
       ]
     },
     {
-      "title": "El robo",
+      "title": "El robo de la joya",
       "poster": "http://dummyimage.com/400x600.png/dddddd/000000",
       "genre": [
         "picaresca"
@@ -165,36 +165,6 @@
         3
       ],
       "id": 12
-    },
-    {
-      "title": "pici",
-      "poster": "http://dummyimage.com/400x600.png/dddddd/000000",
-      "genre": [
-        "asd"
-      ],
-      "year": 23,
-      "duration": 23,
-      "imdbRating": 23,
-      "actors": [
-        2,
-        3
-      ],
-      "id": 13
-    },
-    {
-      "title": "Mooring, The",
-      "poster": "http://dummyimage.com/400x600.png/dddddd/000000",
-      "genre": [
-        "Gene"
-      ],
-      "year": 1987,
-      "duration": 187,
-      "imdbRating": 1.99,
-      "actors": [
-        5,
-        6
-      ],
-      "id": 15
     }
   ],
   "actors": [

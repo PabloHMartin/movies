@@ -41,8 +41,8 @@ export class MoviesService {
     return this.db.addMovie(movie);
   }
 
-  editMovie(movie: Movie): Observable<Movie>{
-    return this.db.updateMovie(movie);
+  editMovie(movie: Movie, id: string): Observable<Movie>{
+    return this.db.updateMovie(movie, id);
   }
 
   getActors(): Observable<Actor[]>{

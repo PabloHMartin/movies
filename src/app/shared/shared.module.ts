@@ -37,7 +37,8 @@ const modules = [
     MatSelectModule,
     MatDialogModule,
     MatListModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+
 ];
 
 @NgModule({

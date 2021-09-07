@@ -40,11 +40,11 @@ export class DbService {
       );
   }
 
-  updateMovie(movie: Movie): Observable<Movie> {
+  updateMovie(movie: Movie, id: string): Observable<Movie> {
 
    const body = { ...movie };
 
-   return this.http.patch<any>(`${this.MOVIES_URI}/${movie.id}`, body)
+   return this.http.patch<any>(`${this.MOVIES_URI}/${id}`, body)
   }
 
   deleteMovie(id: string): Observable<string> {

@@ -1,3 +1,5 @@
+import { ToolbarService } from './../../../shared/services/toolbar.service';
+import { DialogComponent } from './../components/dialog/dialog.component';
 import { MoviesService } from './../services/movies.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DbService } from './../../../shared/services/db.service';
@@ -5,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Actor } from 'src/app/shared/models/actor.model';
 import { Movie } from 'src/app/shared/models/movie.model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-movies-form',
@@ -14,28 +17,36 @@ import { Movie } from 'src/app/shared/models/movie.model';
 export class MoviesFormComponent implements OnInit {
 
   MOVIELIST_URL = 'movies';
+  TITLE = 'newMovie';
 
   form: FormGroup;
   loading = false;
   availableActors: Actor[] = [];
   defaultGenres: string[] = [];
   isEdit: boolean = false;
+  idToEdit: string = '';
 
   constructor(private fb: FormBuilder,
               private moviesService: MoviesService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              public dialog: MatDialog,
+              private toolbar: ToolbarService) { }
 
   ngOnInit(): void {
+
+    this.getActorsFromApi();
 
     this.route.params.subscribe(
       ({id}) => {
         if(localStorage.getItem(id)){
           this.isEdit = true;
+          this.idToEdit = id;
           let movieToUpdate: Movie = JSON.parse(localStorage.getItem(id)) as Movie;
+          this.toolbar.setToolbarTitle(movieToUpdate.title);
           this.createFormFromMovie(movieToUpdate);
         }else{
-          this.getActorsFromApi();
+          this.toolbar.setToolbarTitle(this.TITLE);
           this.createNewForm();
         }
       }
@@ -99,17 +110,19 @@ export class MoviesFormComponent implements OnInit {
 
     async onSubmit() {
 
-    this.loading = true;
-
     const movie: Movie = this.form.value;
 
     if(this.isEdit){
-      this.moviesService.editMovie(movie).subscribe(
+      this.moviesService.editMovie(movie, this.idToEdit).subscribe(
         movie => {
           if(movie){
             console.log(movie);
+             this.openDialog();
+             this.router.navigateByUrl(this.MOVIELIST_URL);
           }else{
-             console.log('error');
+            console.log('error');
+             this.openDialog();
+             this.router.navigateByUrl(this.MOVIELIST_URL);
           }
         }
       );
@@ -119,17 +132,29 @@ export class MoviesFormComponent implements OnInit {
         movie => {
           if(movie){
             console.log(movie);
+            this.loading = false;
+            this.openDialog();
+            this.router.navigateByUrl(this.MOVIELIST_URL);
           }else{
-             console.log('error');
+            console.log('error');
+            this.loading = false;
+            this.openDialog();
+            this.router.navigateByUrl(this.MOVIELIST_URL);
           }
         }
       );
     }
 
 
-    this.router.navigateByUrl(this.MOVIELIST_URL);
-    this.loading = false;
+
   }
 
+  openDialog() {
+    this.dialog.open(DialogComponent, {
+      data: {
+        isEdit: this.isEdit
+      }
+    });
+  }
 
 }

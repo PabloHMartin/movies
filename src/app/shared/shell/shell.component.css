@@ -1,0 +1,48 @@
+.sidenav-container {
+  background-color: rgba(0, 0, 0, 0);
+  height: 100vh;
+}
+
+.sidenav--mobile {
+  width: 250px;
+}
+
+.sidenav--desktop {
+  width: 200px;
+}
+
+.mat-toolbar.mat-primary {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.mat-nav-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 1.5em;
+}
+
+.mat-nav-list__option {
+  width: 90%;
+  margin-bottom: 1em;
+}
+
+.mat-toolbar-single-row {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.option {
+  margin: 1.5em auto;
+}
+/*# sourceMappingURL=shell.component.css.map */

@@ -1,8 +1,11 @@
+import { DialogDeleteComponent } from './../components/dialog-delete/dialog-delete.component';
 import { MoviesService } from '../services/movies.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { switchMap } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { ToolbarService } from 'src/app/shared/services/toolbar.service';
 
 @Component({
   selector: 'app-movie-single',
@@ -19,7 +22,9 @@ export class MovieSingleComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               public moviesService: MoviesService,
-              private router: Router) { }
+              private router: Router,
+              public dialog: MatDialog,
+              private toolbar: ToolbarService) { }
 
   ngOnInit(): void {
 
@@ -37,13 +42,26 @@ export class MovieSingleComponent implements OnInit {
   }
 
   deleteMovie(movie: Movie): void{
-    this.moviesService.deleteMovie(movie.id.toString());
-    this.router.navigateByUrl(this.MOVIELIST_URL);
+    this.openDialog(movie);
   }
 
   private saveToLocalStorage(movie: Movie): void {
     localStorage.clear();
     localStorage.setItem(`${movie.id}`, JSON.stringify(movie))
+  }
+
+    openDialog(movie: Movie): void {
+
+
+
+    const dialogRef = this.dialog.open(DialogDeleteComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+       if(result){
+          this.moviesService.deleteMovie(movie.id.toString());
+          this.router.navigateByUrl(this.MOVIELIST_URL);
+       }
+    });
   }
 
 }

@@ -1,11 +1,14 @@
 <app-loading-spinner *ngIf="!(moviesService.movies$ | async).length" ></app-loading-spinner>
+<mat-toolbar>
+  <span>{{toolbar.toolbar$ | async}}</span>
+</mat-toolbar>
 <div class="card-wrapper">
   <a class="card-wrapper__link" *ngFor="let movie of moviesService.movies$ | async" [routerLink]="movie.id.toString()">
   <mat-card>
     <mat-card-header>
       <mat-card-title>{{ movie.title }}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image [src]="movie.poster" />
+    <img mat-card-image [src]="movie.poster ? movie.poster : defaultImgUrl" />
     <mat-card-content>
         <mat-chip-list aria-label="Fish selection">
           <mat-chip *ngFor="let genre of movie.genre">{{genre}}</mat-chip>
