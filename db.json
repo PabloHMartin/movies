@@ -2,7 +2,7 @@
   "movies": [
     {
       "id": 2,
-      "title": "Mooring, The",
+      "title": "El cuco",
       "poster": "http://dummyimage.com/400x600.png/dddddd/000000",
       "genre": [
         "Horror",
@@ -12,8 +12,7 @@
       "duration": 1872,
       "imdbRating": 1.992,
       "actors": [
-        3,
-        5
+        1
       ]
     },
     {
@@ -22,13 +21,16 @@
       "poster": "http://dummyimage.com/400x600.png/5fa2dd/ffffff",
       "genre": [
         "Drama",
-        "War"
+        "War",
+        "sad",
+        "asd"
       ],
       "year": 2010,
       "duration": 175,
       "imdbRating": 6.25,
       "actors": [
-        1
+        7,
+        8
       ]
     },
     {
@@ -165,21 +167,6 @@
         3
       ],
       "id": 12
-    },
-    {
-      "title": "asd",
-      "poster": "asd",
-      "genre": [
-        "asdas"
-      ],
-      "year": 1233,
-      "duration": 233,
-      "imdbRating": 23,
-      "actors": [
-        1,
-        2
-      ],
-      "id": 13
     }
   ],
   "actors": [

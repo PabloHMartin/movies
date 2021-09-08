@@ -5,7 +5,13 @@
     "companies": "Companies",
     "menu": "Menu"
   },
+  "movieSingle": {
+    "imdbRating": "Rating Imdb",
+    "duration": "Duración"
+  },
   "moviesForm": {
+    "newMovie": "Nueva Película",
+    "editMovie": "Editar Película",
     "placeholderTitle": "Título",
     "placeholderPoster": "Poster url",
     "placeholderGenre": "Géneros",

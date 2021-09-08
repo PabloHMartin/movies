@@ -3,9 +3,11 @@ import { MoviesService } from '../services/movies.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/shared/models/movie.model';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ToolbarService } from 'src/app/shared/services/toolbar.service';
+import { Observable } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-movie-single',
@@ -15,15 +17,21 @@ import { ToolbarService } from 'src/app/shared/services/toolbar.service';
 export class MovieSingleComponent implements OnInit {
 
 
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => result.matches)
+  );
+
   EDIT_URL = 'movie-manager';
   MOVIELIST_URL = 'movies';
-
+  defaultImgUrl = '../../../../assets/img/default-image.png';
   movieId: string = '';
 
   constructor(private route: ActivatedRoute,
               public moviesService: MoviesService,
               private router: Router,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
 
@@ -61,6 +69,10 @@ export class MovieSingleComponent implements OnInit {
           this.router.navigateByUrl(this.MOVIELIST_URL);
        }
     });
+  }
+
+  toMovies(){
+    this.router.navigateByUrl('movies');
   }
 
 }

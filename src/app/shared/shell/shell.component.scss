@@ -19,6 +19,7 @@
 }
 
 .mat-nav-list{
+  font-family: 'Urbanist', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +27,7 @@
   &__option{
     width: 90%;
     margin-bottom: 1em;
+    font-size: 1.2rem;
   }
 }
 .mat-toolbar-single-row{
@@ -35,3 +37,6 @@
   margin:1.5em auto;
 }
 
+.mat-sidenav-content{
+  background-color: #2a2e35;
+}
