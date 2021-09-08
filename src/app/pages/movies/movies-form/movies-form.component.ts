@@ -70,7 +70,7 @@ export class MoviesFormComponent implements OnInit {
     this.defaultActors = actors;
     this.form = this.fb.group({
       title: [title, [Validators.required]],
-      poster: [poster, [Validators.required]],
+      poster: [poster, []],
       genre: [genre, [Validators.required, Validators.minLength(1)]],
       year: [year, [Validators.required]],
       duration: [duration, [Validators.required]],
@@ -82,7 +82,7 @@ export class MoviesFormComponent implements OnInit {
   createNewForm() {
     this.form = this.fb.group({
       title: ['', [Validators.required]],
-      poster: ['', [Validators.required]],
+      poster: ['', []],
       genre: ['', [Validators.required, Validators.minLength(1)]],
       year: ['', [Validators.required]],
       duration: ['', [Validators.required]],
