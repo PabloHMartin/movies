@@ -25,7 +25,7 @@
         "sad",
         "asd"
       ],
-      "year": 2010,
+      "year": 2011,
       "duration": 175,
       "imdbRating": 6.25,
       "actors": [
@@ -143,7 +143,9 @@
       "id": 10,
       "title": "Butterflies Have No Memories",
       "poster": "http://dummyimage.com/400x600.png/dddddd/000000",
-      "genre": [],
+      "genre": [
+        "drama"
+      ],
       "year": 1990,
       "duration": 73,
       "imdbRating": 4.39,

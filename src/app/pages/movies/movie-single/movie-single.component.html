@@ -15,10 +15,10 @@
     <div class="movie-wrapper__info">
       <div class="movie-wrapper__info__short-info">
         <div class="movie-wrapper__info__short-info__imdb">
-        <span>{{'movieSingle.imdbRating' | translate}}</span><span><strong>{{movie.imdbRating}}</strong></span>
+        <div>{{'movieSingle.imdbRating' | translate}}</div><div><strong>{{movie.imdbRating}}</strong></div>
         </div>
         <div class="movie-wrapper__info__short-info__duration">
-          <span>{{'movieSingle.duration' | translate}}</span><span><strong>{{movie.duration}}</strong></span>
+          <div>{{'movieSingle.duration' | translate}}</div><div><strong>{{movie.duration | duration }}</strong></div>
         </div>
       </div>
       <div class="movie-wrapper__genre">
@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-  <div class="fab-buttons" *ngIf="movie" >
+  <div class="fab-buttons" *ngIf="((moviesService.movie$ | async) && (moviesService.movie$ | async).id?.toString() === movieId)" >
     <button (click)="editMovie(movie)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
       <mat-icon>edit</mat-icon>
     </button>

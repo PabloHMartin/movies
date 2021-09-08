@@ -51,8 +51,9 @@
       margin-bottom: 1rem;
       &__duration,
       &__imdb{
-        span{
-          padding-right: .5rem;
+        margin-right: 1rem;
+        div{
+          padding-bottom: .2rem;
         }
       }
     }
