@@ -17,6 +17,7 @@ import {MatListModule} from '@angular/material/list';
 import { ShellComponent } from './shell/shell.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component'
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { TranslateModule } from '@ngx-translate/core';
 
 const components = [ ShellComponent, LoadingSpinnerComponent];
 
@@ -38,7 +39,7 @@ const modules = [
     MatDialogModule,
     MatListModule,
     MatAutocompleteModule,
-
+    TranslateModule
 ];
 
 @NgModule({

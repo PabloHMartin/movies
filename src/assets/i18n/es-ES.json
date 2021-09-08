@@ -1,3 +1,36 @@
 {
-  "langtest": "Esto es un test de traducción"
+  "navbar": {
+    "movies": "Movies",
+    "actors": "Actors",
+    "companies": "Companies",
+    "menu": "Menu"
+  },
+  "moviesForm": {
+    "placeholderTitle": "Título",
+    "placeholderPoster": "Poster url",
+    "placeholderGenre": "Géneros",
+    "placeholderActors": "Actores",
+    "placeholderYear": "Año",
+    "placeholderDuration": "Duración",
+    "placeholderImdb": "Calificación IMDB",
+    "errorTitle": "Debe introducir un título válido",
+    "errorPoster": "Debe introducir una url válida",
+    "errorGenre": "Debe introducir géneros válidos",
+    "errorActors": "Debe introducir actores válidos",
+    "errorYear": "Debe introducir un año válido",
+    "errorDuration": "Debe introducir una duración válida",
+    "errorImdb": "Debe introducir una calificación válida",
+    "send": "Enviar"
+  },
+  "dialogs": {
+    "deleteTitle": "Borrado",
+    "deleteSubtitle": "¿Desea borrar la película?",
+    "no": "NO",
+    "yes": "SI",
+    "editTitle": "Edición",
+    "editSubtitle": "Película editada correctamente",
+    "close" : "Cerrar",
+    "createTitle": "Nueva película",
+    "createSubtitle": "Película creada correctamente"
+  }
 }
