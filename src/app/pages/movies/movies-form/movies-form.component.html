@@ -1,9 +1,14 @@
-<mat-toolbar>
-  <span>{{toolbar.toolbar$ | async}}</span>
+<mat-toolbar class="toolbar">
+  <span>{{ 'moviesForm.'+(toolbar.toolbar$ | async )| translate}}</span>
 </mat-toolbar>
-<div class="form-wrapper">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <mat-form-field [color]="title.valid && 'accent'">
+<mat-icon class="mat-icon" (click)="toMovie()">arrow_back_ios</mat-icon>
+<div class="form-wrapper"
+[class.form-wrapper--desktop]="!(isHandset$| async)">
+  <form [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        (keydown.enter)="$event.preventDefault()">
+    <mat-form-field
+     [color]="title.valid && 'accent'">
       <input
       matInput
       formControlName="title"
@@ -97,6 +102,8 @@
     </mat-form-field>
 
       <button
+      class="button"
+      [class.button--desktop]="!(isHandset$| async)"
       mat-raised-button
       color="accent"
       type="submit"

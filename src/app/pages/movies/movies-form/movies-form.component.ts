@@ -8,6 +8,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Actor } from 'src/app/shared/models/actor.model';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movies-form',
@@ -16,8 +19,14 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MoviesFormComponent implements OnInit {
 
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
+
   MOVIELIST_URL = 'movies';
   TITLE = 'newMovie';
+  EDIT_TITLE = "editMovie"
 
   form: FormGroup;
   loading = false;
@@ -32,7 +41,8 @@ export class MoviesFormComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               public dialog: MatDialog,
-              public toolbar: ToolbarService) { }
+              public toolbar: ToolbarService,
+              private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
 
@@ -44,7 +54,7 @@ export class MoviesFormComponent implements OnInit {
           this.isEdit = true;
           this.idToEdit = id;
           let movieToUpdate: Movie = JSON.parse(localStorage.getItem(id)) as Movie;
-          this.toolbar.setToolbarTitle(movieToUpdate.title);
+          this.toolbar.setToolbarTitle(this.EDIT_TITLE);
           this.createFormFromMovie(movieToUpdate);
         }else{
           this.toolbar.setToolbarTitle(this.TITLE);
@@ -110,7 +120,7 @@ export class MoviesFormComponent implements OnInit {
   }
 
 
-    async onSubmit() {
+    onSubmit() {
 
     const movie: Movie = this.form.value;
 
@@ -146,9 +156,12 @@ export class MoviesFormComponent implements OnInit {
         }
       );
     }
+  }
 
-
-
+  toMovie(): void{
+    this.idToEdit ?
+      this.router.navigateByUrl(`${this.MOVIELIST_URL}/${this.idToEdit}`) :
+      this.router.navigateByUrl(this.MOVIELIST_URL);
   }
 
   openDialog() {
