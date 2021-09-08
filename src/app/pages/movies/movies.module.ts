@@ -19,7 +19,7 @@ import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.
     CommonModule,
     SharedModule,
     MoviesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class MoviesModule { }

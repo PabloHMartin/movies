@@ -1,3 +1,4 @@
+import { DurationPipe } from './pipes/duration.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -19,7 +20,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { TranslateModule } from '@ngx-translate/core';
 
-const components = [ ShellComponent, LoadingSpinnerComponent];
+const components = [ ShellComponent, LoadingSpinnerComponent, DurationPipe];
 
 
 const modules = [
@@ -39,20 +40,19 @@ const modules = [
     MatDialogModule,
     MatListModule,
     MatAutocompleteModule,
-    TranslateModule
+    TranslateModule,
 ];
 
 @NgModule({
   declarations: [
     ...components,
-
   ],
   imports: [
     ...modules
   ],
   exports: [
     ...components,
-    ...modules
+    ...modules,
   ]
 })
 export class SharedModule { }
