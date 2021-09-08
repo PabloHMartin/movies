@@ -20,7 +20,7 @@ export class DbService {
   }
 
   private retrieveMovie(id: string): Observable<Movie>{
-          return this.http.get<Movie>(`${this.MOVIES_URI}/${id}`);
+    return this.http.get<Movie>(`${this.MOVIES_URI}/${id}`);
   }
 
   getMovie(id: string): Observable<Movie> {
