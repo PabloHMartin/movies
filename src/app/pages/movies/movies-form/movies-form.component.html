@@ -8,12 +8,12 @@
       matInput
       formControlName="title"
       type="text"
-      placeholder="title"
+      placeholder="{{'moviesForm.placeholderTitle' | translate}}"
       autocomplete="off"
       />
 
       <mat-error *ngIf="title.invalid && title.dirty">
-        You must enter a valid title
+       {{ 'moviesForm.errorTitle' | translate}}
       </mat-error>
     </mat-form-field>
 
@@ -22,12 +22,12 @@
       matInput
       formControlName="poster"
       type="text"
-      placeholder="poster"
+      placeholder="{{'moviesForm.placeholderPoster' | translate}}"
       autocomplete="off"
       />
 
       <mat-error *ngIf="poster.invalid && poster.dirty">
-        You must enter a valid url
+        {{ 'moviesForm.errorPoster' | translate}}
       </mat-error>
     </mat-form-field>
 
@@ -37,16 +37,17 @@
     formControlName="genre">
     </app-genres-input>
     <mat-error *ngIf="genre.invalid && genre.dirty && genre.touched">
-      You must enter a valid url
+     {{ 'moviesForm.errorGenre' | translate}}
     </mat-error>
 
     <app-actors-input
-    [validator]="genre"
+    [validator]="actors"
     [availableActors]="availableActors"
+    [defaultActors]="defaultActors"
     formControlName="actors">
     </app-actors-input>
     <mat-error *ngIf="actors.invalid && actors.dirty && actors.touched">
-      You must enter a valid url
+      {{ 'moviesForm.errorActors' | translate}}
     </mat-error>
 
 
@@ -57,12 +58,12 @@
       matInput
       formControlName="year"
       type="number"
-      placeholder="year"
+      placeholder="{{'moviesForm.placeholderYear' | translate}}"
       autocomplete="off"
       />
 
       <mat-error *ngIf="year.invalid && year.dirty">
-        You must enter a valid url
+       {{ 'moviesForm.errorYear' | translate}}
       </mat-error>
     </mat-form-field>
 
@@ -71,12 +72,12 @@
       matInput
       formControlName="duration"
       type="number"
-      placeholder="duration"
+      placeholder="{{'moviesForm.placeholderDuration' | translate}}"
       autocomplete="off"
       />
 
       <mat-error *ngIf="duration.invalid && duration.dirty">
-        You must enter a valid url
+       {{ 'moviesForm.errorDuration' | translate}}
       </mat-error>
 
     </mat-form-field>
@@ -86,12 +87,12 @@
       matInput
       formControlName="imdbRating"
       type="number"
-      placeholder="imdbRating"
+      placeholder="{{'moviesForm.placeholderImdb' | translate}}"
       autocomplete="off"
       />
 
       <mat-error *ngIf="imdbRating.invalid && imdbRating.dirty">
-        You must enter a valid url
+        {{ 'moviesForm.errorImdb' | translate}}
       </mat-error>
     </mat-form-field>
 
@@ -101,7 +102,7 @@
       type="submit"
       [disabled]="form.invalid || loading"
       >
-      Enviar
+      {{'moviesForm.send' | translate}}
     </button>
   </form>
 </div>

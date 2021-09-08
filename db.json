@@ -9,8 +9,8 @@
         "Thriller"
       ],
       "year": 1987,
-      "duration": 187,
-      "imdbRating": 1.99,
+      "duration": 1872,
+      "imdbRating": 1.992,
       "actors": [
         3,
         5
@@ -165,6 +165,21 @@
         3
       ],
       "id": 12
+    },
+    {
+      "title": "asd",
+      "poster": "asd",
+      "genre": [
+        "asdas"
+      ],
+      "year": 1233,
+      "duration": 233,
+      "imdbRating": 23,
+      "actors": [
+        1,
+        2
+      ],
+      "id": 13
     }
   ],
   "actors": [

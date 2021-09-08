@@ -2,7 +2,7 @@
       <input
       matInput
       type="text"
-      placeholder="genre"
+      placeholder="{{ 'moviesForm.placeholderGenre' | translate}}"
       autocomplete="off"
       (keydown.enter)="addGenre($event.target.value)"
       />
