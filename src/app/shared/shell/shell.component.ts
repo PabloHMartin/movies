@@ -1,3 +1,4 @@
+import { ToolbarService } from './../services/toolbar.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -15,7 +16,8 @@ export class ShellComponent {
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver,
+              public toolbar: ToolbarService) { }
 
 
 }

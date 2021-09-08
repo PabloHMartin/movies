@@ -1,0 +1,20 @@
+    <mat-form-field [color]="validator.valid && 'accent'">
+      <input
+      matInput
+      type="text"
+      placeholder="{{ 'moviesForm.placeholderGenre' | translate}}"
+      autocomplete="off"
+      (keydown.enter)="addGenre($event.target.value)"
+      />
+    </mat-form-field>
+
+    <mat-chip-list>
+        <mat-chip
+        *ngFor="let genre of genresSelected"
+        [removable]="removable"
+        (removed)="removeGenre(genre)"
+        >
+          {{genre}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+    </mat-chip-list>

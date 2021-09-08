@@ -1,0 +1,115 @@
+<mat-toolbar class="toolbar">
+  <span>{{ 'moviesForm.'+(toolbar.toolbar$ | async )| translate}}</span>
+</mat-toolbar>
+<mat-icon class="mat-icon" (click)="toMovie()">arrow_back_ios</mat-icon>
+<div class="form-wrapper"
+[class.form-wrapper--desktop]="!(isHandset$| async)">
+  <form [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        (keydown.enter)="$event.preventDefault()">
+    <mat-form-field
+     [color]="title.valid && 'accent'">
+      <input
+      matInput
+      formControlName="title"
+      type="text"
+      placeholder="{{'moviesForm.placeholderTitle' | translate}}"
+      autocomplete="off"
+      />
+
+      <mat-error *ngIf="title.invalid && title.dirty">
+       {{ 'moviesForm.errorTitle' | translate}}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field [color]="poster.valid && 'accent'">
+      <input
+      matInput
+      formControlName="poster"
+      type="text"
+      placeholder="{{'moviesForm.placeholderPoster' | translate}}"
+      autocomplete="off"
+      />
+
+      <mat-error *ngIf="poster.invalid && poster.dirty">
+        {{ 'moviesForm.errorPoster' | translate}}
+      </mat-error>
+    </mat-form-field>
+
+    <app-genres-input
+    [validator]="genre"
+    [defaultGenres]="defaultGenres"
+    formControlName="genre">
+    </app-genres-input>
+    <mat-error *ngIf="genre.invalid && genre.dirty && genre.touched">
+     {{ 'moviesForm.errorGenre' | translate}}
+    </mat-error>
+
+    <app-actors-input
+    [validator]="actors"
+    [availableActors]="availableActors"
+    [defaultActors]="defaultActors"
+    formControlName="actors">
+    </app-actors-input>
+    <mat-error *ngIf="actors.invalid && actors.dirty && actors.touched">
+      {{ 'moviesForm.errorActors' | translate}}
+    </mat-error>
+
+
+
+
+    <mat-form-field [color]="year.valid && 'accent'">
+      <input
+      matInput
+      formControlName="year"
+      type="number"
+      placeholder="{{'moviesForm.placeholderYear' | translate}}"
+      autocomplete="off"
+      />
+
+      <mat-error *ngIf="year.invalid && year.dirty">
+       {{ 'moviesForm.errorYear' | translate}}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field [color]="duration.valid && 'accent'">
+      <input
+      matInput
+      formControlName="duration"
+      type="number"
+      placeholder="{{'moviesForm.placeholderDuration' | translate}}"
+      autocomplete="off"
+      />
+
+      <mat-error *ngIf="duration.invalid && duration.dirty">
+       {{ 'moviesForm.errorDuration' | translate}}
+      </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field [color]="imdbRating.valid && 'accent'">
+      <input
+      matInput
+      formControlName="imdbRating"
+      type="number"
+      placeholder="{{'moviesForm.placeholderImdb' | translate}}"
+      autocomplete="off"
+      />
+
+      <mat-error *ngIf="imdbRating.invalid && imdbRating.dirty">
+        {{ 'moviesForm.errorImdb' | translate}}
+      </mat-error>
+    </mat-form-field>
+
+      <button
+      class="button"
+      [class.button--desktop]="!(isHandset$| async)"
+      mat-raised-button
+      color="accent"
+      type="submit"
+      [disabled]="form.invalid || loading"
+      >
+      {{'moviesForm.send' | translate}}
+    </button>
+  </form>
+</div>

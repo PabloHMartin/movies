@@ -1,0 +1,52 @@
+<app-loading-spinner *ngIf="!(moviesService.movie$ | async) || (moviesService.movie$ | async).id?.toString() !== movieId " ></app-loading-spinner>
+<div *ngIf=" (moviesService.movie$ | async).id?.toString() !== movieId || (moviesService.movie$ | async) as movie " >
+  <div *ngIf="((moviesService.movie$ | async) && (moviesService.movie$ | async).id?.toString() === movieId)">
+    <div class="toolbar">
+      <div class="toolbar__title">{{movie.title}}</div>
+    </div>
+    <mat-icon class="mat-icon" (click)="toMovies()">arrow_back_ios</mat-icon>
+  </div>
+  <div class="movie-wrapper"
+  [class.movie-wrapper--desktop]="!(isHandset$| async)"
+  *ngIf="movie.id && (movieId === movie.id.toString())" >
+    <div class="movie-wrapper__img">
+      <img [src]="movie.poster ? movie.poster : defaultImgUrl">
+    </div>
+    <div class="movie-wrapper__info">
+      <div class="movie-wrapper__info__short-info">
+        <div class="movie-wrapper__info__short-info__imdb">
+        <div>{{'movieSingle.imdbRating' | translate}}</div><div><strong>{{movie.imdbRating}}</strong></div>
+        </div>
+        <div class="movie-wrapper__info__short-info__duration">
+          <div>{{'movieSingle.duration' | translate}}</div><div><strong>{{movie.duration | duration }}</strong></div>
+        </div>
+      </div>
+      <div class="movie-wrapper__genre">
+        <div>
+          <mat-chip-list aria-label="genres">
+            <mat-chip class="movie-wrapper__genre__chip" *ngFor="let genre of movie.genre">{{genre}}</mat-chip>
+          </mat-chip-list>
+        </div>
+      </div>
+      <div class="movie-wrapper__actors">
+        <div class="movie-wrapper__actors__title">Actores</div>
+        <div class="movie-wrapper__actors__actors">
+          <div class="movie-wrapper__actors__actors__actor" *ngFor="let actor of movie.actorsInfo">
+            {{actor.first_name}} {{actor.last_name}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="fab-buttons" *ngIf="((moviesService.movie$ | async) && (moviesService.movie$ | async).id?.toString() === movieId)" >
+    <button (click)="editMovie(movie)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button (click)="deleteMovie(movie)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>
+
+
+

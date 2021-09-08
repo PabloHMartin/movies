@@ -5,16 +5,16 @@
               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
               [mode]="(isHandset$ | async) ? 'over' : 'side'"
               [opened]="!(isHandset$ | async)">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar>{{ 'navbar.menu' | translate}}</mat-toolbar>
     <mat-nav-list class="mat-nav-list">
-      <a class="mat-nav-list__option" routerLink="">
-        Movies
+      <a class="mat-nav-list__option" routerLink="movies">
+        {{ 'navbar.movies' | translate}}
       </a>
       <a class="mat-nav-list__option" routerLink="">
-        Actors
+        {{ 'navbar.actors' | translate}}
       </a>
-      <a class="mat-nav-list__option" routerLink="pois">
-        Companies
+      <a class="mat-nav-list__option" routerLink="">
+        {{ 'navbar.companies' | translate}}
       </a>
 
     </mat-nav-list>
@@ -28,3 +28,4 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+

@@ -1,0 +1,24 @@
+<app-loading-spinner *ngIf="!(moviesService.movies$ | async).length" ></app-loading-spinner>
+<mat-toolbar class="toolbar" *ngIf="(moviesService.movies$ | async).length">
+  <div class="toolbar__title">{{toolbar.toolbar$ | async | uppercase}}</div>
+</mat-toolbar>
+<div class="card-wrapper" [class.card-wrapper--desktop]="!(isHandset$| async)">
+  <a class="card-wrapper__link" *ngFor="let movie of moviesService.movies$ | async" [routerLink]="movie.id.toString()">
+  <mat-card class="card-wrapper__card">
+    <mat-card-header class="card-wrapper__card__header">
+      <mat-card-title class="card-wrapper__card__header__title">{{ movie.title }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="movie.poster ? movie.poster : defaultImgUrl" />
+    <mat-card-content>
+        <mat-chip-list aria-label="Fish selection">
+          <mat-chip *ngFor="let genre of movie.genre">{{genre}}</mat-chip>
+      </mat-chip-list>
+    </mat-card-content>
+  </mat-card>
+  </a>
+</div>
+<div class="fab-buttons" *ngIf="(moviesService.movies$ | async).length" >
+  <button (click)="addNew()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

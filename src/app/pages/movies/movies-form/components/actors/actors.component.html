@@ -1,0 +1,6 @@
+<mat-form-field [color]="validator.valid && 'accent'">
+  <mat-select multiple placeholder="{{ 'moviesForm.placeholderActors' | translate}}" (selectionChange)="selectionChanged($event)">
+    <mat-option *ngFor="let actor of availableActors" [value]="actor.id">{{actor.first_name}} {{actor.last_name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+

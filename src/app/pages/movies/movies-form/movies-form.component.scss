@@ -1,0 +1,75 @@
+.toolbar{
+  background-color: #2a2e35;
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px dashed grey;
+  margin: 2rem 0;
+  &__title{
+    font-family: 'Urbanist', sans-serif;
+    font-size: 2em;
+    text-align: center;
+    padding-bottom: .5em;
+  }
+}
+
+.mat-icon{
+  padding: 0rem 1rem;
+  cursor: pointer;
+}
+
+.form-wrapper{
+  padding: 1rem;
+  &--desktop{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    form{
+      button{
+        width: 20%;
+      }
+    }
+  }
+  form{
+    font-size: 1.1rem;
+    mat-form-field{
+      margin-bottom: 1rem 0rem;
+    }
+
+    .button{
+      width: 100%;
+      &--desktop{
+        width: 35%;
+      }
+    }
+  }
+}
+mat-card {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+mat-form-field {
+      width: 100%;
+      margin-bottom: 16px;
+}
+
+.server-error {
+    margin: 8px 0;;
+}
+
+
+input {
+    height: 2em;
+    div.mat-form-field-infix {
+      padding: .3em 0;
+      input.mat-input-element {
+        vertical-align: top;
+      }
+    }
+  }
+  div.mat-form-field-wrapper{
+    padding-bottom: 1.15em;
+  }
